@@ -2,6 +2,7 @@ package concurrency
 
 import (
 	"sync"
+	"sync/atomic"
 )
 
 func CounterNoSafe() int {
@@ -32,6 +33,22 @@ func CounterSafe() int {
 				mu.Lock()
 				count++
 				mu.Unlock()
+			}
+		}()
+	}
+	wg.Wait()
+	return count
+}
+
+func CounterAtomic() int64 {
+	var count int64 = 0
+	var wg sync.WaitGroup
+	wg.Add(10)
+	for i := 0; i < 10; i++ {
+		go func() {
+			defer wg.Done()
+			for j := 0; j < 100000; j++ {
+				atomic.AddInt64(&count,1)
 			}
 		}()
 	}

@@ -22,6 +22,16 @@ func TestCounterSafe(t *testing.T) {
 	}
 
 }
+func TestCounterAtomic(t *testing.T) {
+
+	count := CounterAtomic()
+	t.Logf("result=%d", count)
+	var expected int64= 1_000_000
+	if count != expected {
+		t.Errorf("result not epected 1_000_000, count=%d", count)
+	}
+
+}
 
 func TestCounterSafeWrapper(t *testing.T) {
 
