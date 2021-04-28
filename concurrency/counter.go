@@ -5,6 +5,7 @@ import (
 	"sync/atomic"
 )
 
+// 非原子操作计数
 func CounterNoSafe() int {
 	var count = 0
 	var wg sync.WaitGroup
@@ -21,6 +22,7 @@ func CounterNoSafe() int {
 	return count
 }
 
+// sync.Mutex 锁住临界区
 func CounterSafe() int {
 	var mu sync.Mutex
 	var count = 0
@@ -48,7 +50,7 @@ func CounterAtomic() int64 {
 		go func() {
 			defer wg.Done()
 			for j := 0; j < 100000; j++ {
-				atomic.AddInt64(&count,1)
+				atomic.AddInt64(&count, 1)
 			}
 		}()
 	}
