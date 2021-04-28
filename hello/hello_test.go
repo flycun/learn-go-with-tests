@@ -1,4 +1,4 @@
-package main
+package hello
 
 import "testing"
 
@@ -25,7 +25,4 @@ func TestHello(t *testing.T) {
 		assertCorrectMessage(t, got, want)
 	})
 
-	
-
 }
-
