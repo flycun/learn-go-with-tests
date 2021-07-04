@@ -11,16 +11,15 @@ func (b Bitcoin) String() string {
 
 // Wallet stores the number of Bitcoin someone owns.
 type Wallet struct {
-	balance int
+	balance Bitcoin
 }
 
 // Deposit will add some Bitcoin to a wallet.
-func (w *Wallet) Deposit(amount int) {
-	fmt.Println("address of balance in Deposit is", &w.balance)
+func (w *Wallet) Deposit(amount Bitcoin) {
 	w.balance+=amount
 }
 
 // Balance returns the number of Bitcoin a wallet has.
-func (w *Wallet) Balance() int {
+func (w *Wallet) Balance() Bitcoin {
 	return w.balance
 }
