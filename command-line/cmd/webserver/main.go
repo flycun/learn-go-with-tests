@@ -1,7 +1,7 @@
 package main
 
 import (
-	poker "github.com/flycun/learn-go-with-tests/command-line"
+	"github.com/flycun/learn-go-with-tests/command-line"
 	"log"
 	"net/http"
 	"os"
